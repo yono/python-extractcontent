@@ -274,8 +274,9 @@ class ExtractContent(object):
     def _strip_tags(self, html):
         st = re.sub(r"(?s)<.+?>", "", html)
         # Convert from wide character to ascii
-        st = unicodedata.normalize("NFKC", st)
-        st = st.encode('utf-8')
+        if type(st) != str:
+            st = unicodedata.normalize("NFKC", st)
+            st = st.encode('utf-8')
         st = re.sub(r'\342[\224\225][\200-\277]','',st) # keisen
         st = re.sub(r"&(.*?);",lambda x:self.CHARREF.get(x.group(1), x.group()), st)
         st = st.decode('utf-8')
