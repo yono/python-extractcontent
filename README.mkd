@@ -1,0 +1,62 @@
+# ExtractContent
+
+ExtractContentはHTMLから本文を抽出するモジュールです。
+このモジュールは同名のRubyモジュールをPython用に書き直したものです。
+
+## Usage
+
+    import extractcontent
+    extractor = extractcontent.ExtractContent()
+
+    # オプション値を指定する
+    opt = {"threshold":50}
+    extractor.set_default(opt)
+
+    html = open("index.html").read() # 解析対象HTML
+    extractor.analyse(html)
+    text, title = extractor.as_text()
+    html, title = extractor.as_html()
+    title = extractor.extract_title(html)
+
+
+    """
+    オプションの種類:
+    名称 / デフォルト値
+
+    threshold / 100
+    本文と見なすスコアの閾値
+
+    min_length / 80
+    評価を行うブロック長の最小値
+
+    decay_factor / 0.73
+    減衰係数
+    小さいほど先頭に近いブロックのスコアが高くなります
+
+    continuous_factor / 1.62
+    連続ブロック係数
+    大きいほどブロックを連続と判定しにくくなる
+
+    punctuation_weight / 10
+    句読点に対するスコア　
+    大きいほど句読点が存在するブロックを本文と判定しやすくなる
+
+    punctuations / r"(?is)(\343\200[\201\202]|\357\274[\201\214\216\237]|\.[^A-Za-z0-9]|,[^0-9]|!|\?)"
+    句読点を抽出する正規表現
+
+    waste_expressions / r"(?i)Copyright|All Rights Reserved"
+    フッターに含まれる特徴的なキーワードを指定した正規表現
+
+    debug / False
+    Trueの場合、ブロック情報を出力
+    """
+
+Copyright of the original implementation:: 
+(c)2007/2008/2009 Nakatani Shuyo / Cybozu labs Inc. All rights reserved
+
+謝辞:
+本モジュールは中谷氏が開発したRubyモジュール ExtractContent を基にさせていただいています。
+ありがとうございます。
+http://rubyforge.org/projects/extractcontent/
+http://labs.cybozu.co.jp/blog/nakatani/2007/09/web_1.html
+
