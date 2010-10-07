@@ -95,7 +95,7 @@ class ExtractContent(object):
         body = ''
         score = 0
         bodylist = []
-        list =
+        list = \
         re.split(r"""</?(?:div|center|td)[^>]*>|<p\s*[^>]*class\s*=\s*
                 [\"']?(?:posted|plugin-\w+)['\"]?[^>]*>""", html)
         for block in list:
@@ -179,7 +179,7 @@ class ExtractContent(object):
                 "", html)
         html = html.decode('utf-8')
         # Eliminate useless html tags
-        html =
+        html = \
         re.sub(r"""(?is)<(script|style|select|noscript)[^>]*>.*?</\1\s*>""",
                 "", html)
         html = re.sub(r"(?s)<!--.*?-->", "", html)
