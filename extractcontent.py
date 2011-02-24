@@ -12,8 +12,8 @@ class ExtractContent(object):
         "lt": "<",
         "gt": "<",
         "amp": "&",
-        "laquo": u"\xc2\xab",
-        "raquo": u"\xc2\xbb",
+        "laquo": '\x00\xc2\xab', # u"\x00\xab".encode("utf-8")
+        "raquo": '\x00\xc2\xbb', # u"\x00\xbb".encode("utf-8")
     }
 
     # Default option parameters.
